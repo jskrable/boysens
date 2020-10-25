@@ -21,7 +21,7 @@ def update_table(memory):
 
     item = {
         'id': uuid.uuid1().hex,
-        'memory': submission,
+        'memory': memory,
         'timestamp': str(datetime.datetime.now())
     }
 

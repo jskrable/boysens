@@ -25,7 +25,7 @@ $('#submit-memory').click((e) => {
             FunctionName: 'saveMemory',
             InvocationType: 'RequestResponse',
             LogType: 'Tail',
-            Payload: '{"memory": ' + JSON.stringify(memory.toLowerCase()) + '}' // search terms
+            Payload: '{"memory": ' + JSON.stringify(memory) + '}' // search terms
         };
         console.log(params);
         triggerLambda(params, 'POST');
@@ -120,6 +120,7 @@ function displayMemories(data) {
     entries = JSON.parse(data).Items;
     entries.forEach(msg => {
         // create preview cards here, with link to open full text in modal
+        // need to limit chars, maybe 150? for looks.
         card = generateCard(msg)
         memories.append(card)
     });

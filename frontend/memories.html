@@ -15,6 +15,26 @@
 		<meta name="theme-color" content="#ffffff">
 	</head>
 	<body>
+		<header>
+			<div id="header">
+				<script type="text/javascript" src="js/active.js"></script>
+				<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0a5e0f;">
+					<a class="navbar-brand" href="/index.html">
+						<strong>HOME</strong>
+					</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item">
+								<a class="nav-link" href="/memories.html" id="nav-projects">Memories</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</header>
 		<div class="container-fluid">
 			<div class="text-center my-auto px-5 py-3">
 				<h2>Memories</h2>
@@ -74,7 +94,6 @@
 					</div>
 				</div>
 			</div>
-
 			<!-- Full memory display modal -->
 			<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="full-memory-modal">
 				<div class="modal-dialog modal-lg">
@@ -98,7 +117,10 @@
 			</div>
 			<footer class="footer">
 				<div class="container text-center">
-					<span class="text-muted">&copy; Jim & Sam, Together, For Eternity</span>
+					<span class="text-muted">Jim & Sam, Together, For Eternity</span>
+					<br>
+					<span class="text-muted">&copy; 2020</span>
+					<br>
 				</div>
 			</footer>
 		</div>
@@ -107,6 +129,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 		<!-- AWS JS SDK -->
 		<script src="https://sdk.amazonaws.com/js/aws-sdk-2.348.0.min.js"></script>
+		<!-- Custom card scripts -->
 		<script src="js/memories.js"></script>
 	</body>
 	

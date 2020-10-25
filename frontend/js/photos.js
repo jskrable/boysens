@@ -40,7 +40,7 @@ $('#submit-memory').click((e) => {
 
 // empty full memory modal on close
 $('#full-memory-modal').on('hidden.bs.modal', function (e) {
-	$('#full-memory').empty();
+	('#full-memory').empty();
 });
 
 
@@ -120,12 +120,11 @@ function showFullMemory(id) {
 
 function generateCard(entry) {
     // console.log(entry.id)
-    var d = new Date(entry.timestamp);
     html = '<div class="card" id="' + entry.id + '">'
     html += '<div class="card-body">'
     // html += '<h5 class="card-title">Card title</h5>'
     html += '<p class="card-text">' + entry.memory.substr(0, 150) + '...</p>'
-    html += '<p class="card-text"><small class="text-muted">' + d.toLocaleString() + '</small></p>'
+    html += '<p class="card-text"><small class="text-muted">' + entry.timestamp + '</small></p>'
     html += '</div></div>'
     return html
 }

@@ -15,17 +15,42 @@
 		<meta name="theme-color" content="#ffffff">
 	</head>
 	<body>
+		<header>
+			<div id="header">
+				<script type="text/javascript" src="js/active.js"></script>
+				<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0a5e0f;">
+					<a class="navbar-brand" href="/index.html">
+						<strong>HOME</strong>
+					</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item">
+								<a class="nav-link" href="/memories.html">Memories</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</header>
 		<div class="container-fluid">
 			<div class="text-center my-auto px-5 py-5">
 				<h2>They Did Everything Together</h2>
 			</div>
 			<div class="text-center my-auto px-5 py-auto">
-				<p>This is a memorial page for Jim and Sam Skrable. They left this world as they entered it, together. We will post information about funeral services here as we plan it.</p>
+				<p>This is a memorial page for Jim and Sam Skrable. They left this world as they entered it, together.</p>
+				<br>
+				<p>We will post information about funeral services here as we plan it. Most likely there will be a large outdoor service in Mahwah, NJ, on Thursday, October 29th or Friday, October 30th. Any links to a livestream will be posted here as well.</p>
+				<br>
+				<p>Please go to the <a href="/memories.html">memories</a> page and share any stories about Jim and Sam that come to mind.</p>
+				<br>
 			</div>
 			<!-- <div class="container-fluid">
-					<div class="my-auto px-5 py-5">
-							<img src="./css/images/oshkosh_crop.jpeg" class="img-thumbnail rounded float-right" alt="ResponsiveImage">
-					</div>
+						<div class="my-auto px-5 py-5">
+									<img src="./css/images/oshkosh_crop.jpeg" class="img-thumbnail rounded float-right" alt="ResponsiveImage">
+						</div>
 			</div> -->
 			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 				<ol class="carousel-indicators">
@@ -34,6 +59,7 @@
 					<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 					<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
 					<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+					<!-- <li data-target="#carouselExampleIndicators" data-slide-to="5"></li> -->
 				</ol>
 				<div class="carousel-inner">
 					<div class="carousel-item active">
@@ -51,6 +77,9 @@
 					<div class="carousel-item">
 						<img src="./css/images/mob-molly_crop.jpeg" class="d-block w-100" alt="...">
 					</div>
+					<!-- <div class="carousel-item">
+						<img src="./css/images/bat_rob.jpg" class="d-block w-100" alt="...">
+					</div> -->
 				</div>
 				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -61,20 +90,19 @@
 					<span class="sr-only">Next</span>
 				</a>
 			</div>
-
 			<div class="text-center my-5 mx-5 px-5 py-auto">
-				<p>In lieu of flowers, please consider donating to the following organzations:
-
-					<br><a href="https://www.sample.com">Organization 1</a>
-					<br><a href="https://www.sample.com">Organization 2</a>
-					<br><a href="https://www.sample.com">Organization 3</a>
-
-				</p>
+				<!-- <p>In lieu of flowers, please consider donating to the following organzations:
+					<br><a href="https://www.mhanational.org/" target="_blank">Mental Health America</a>
+					<br><a href="https://www.nami.org/Home" target="_blank">National Alliance on Mental Illness</a>
+				</p> -->
+				<p>In lieu of flowers, please love each other with all you have, and give to any organizations you believe will improve the world for those remaining here.</p>
 			</div>
-
 			<footer class="footer">
 				<div class="container text-center">
-					<span class="text-muted">&copy; Jim & Sam, Together, For Eternity</span>
+					<span class="text-muted">Jim & Sam, Together, For Eternity</span>
+					<br>
+					<span class="text-muted">&copy; 2020</span>
+					<br>
 				</div>
 			</footer>
 		</div>
@@ -83,6 +111,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 		<!-- AWS JS SDK -->
 		<script src="https://sdk.amazonaws.com/js/aws-sdk-2.348.0.min.js"></script>
-		<!-- <script language="text/javascript" src=js/memories.js> </script> -->
+		<!-- Custom photo scripts -->
+		<script src="js/photos.js"></script>
 	</body>
 </html>

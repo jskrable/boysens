@@ -27,6 +27,19 @@ $( document ).ready(function() {
     	}	
 	});
 
+
+
+// display list if loaded already
+var memoryContainer = JSON.parse(sessionStorage.getItem('memoryContainer'));
+if (memoryContainer != null) {
+    popFileMenu(memoryContainer);
+    // else fetch jobs and then display
+} else if (sessionStorage.getItem('memoryContainer') === null && $("#job-list-container").length >= 1){
+    getFileJobs();
+}
+
+
+
 // Create modal for response display 
 function doModal(content) {
     html =  '<div id="dynamicModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="confirm-modal" aria-hidden="true">';
@@ -34,12 +47,12 @@ function doModal(content) {
     html += '<div class="modal-content">';
     html += '<div class="modal-header">';
     //html += '<a class="close ml-0" data-dismiss="modal">x</a>';
-    html += '<h4 class=" mt-0 m-auto">Uncle Paul says...</h4>'
+    html += '<h6 class=" mt-0 m-auto">Please share any memories you have so we can all remember...</h4>'
     html += '</div>'; // header
     html += '<div class="modal-body mr-1">';
     html += '<div class="row">';
     html += '<div class="col-md-6 text-center m-auto" >';
-    html += content;
+    html += ;
     html += '</div>'; //content
     html += '<div class="col-md-6">';
     html += '<img src="http://unclepaulknowsall.com/css/images/crossed_arms.jpg" class="img-thumbnail rounded float-right" alt="ResponsiveImage">';
@@ -96,4 +109,39 @@ function triggerLambda(params) {
 		}
 	});
 
+}
+
+
+
+// Function to get the list of file mover jobs to display
+function getMemories() {
+
+    url = 'https://elastic.snaplogic.com:443/api/1/rest/slsched/feed/BUDev/projects/IntegrationHub/getListOfFileMoves_triggered_task'
+    auth = 'Bearer h6kDURpJ0fDJgQnjfft402h3uxHqPVVN'
+    var headers = {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': auth
+        }
+    };
+
+    fetch(url, headers).then(
+        function(response) {
+            if (response.ok && response.status === 200) {
+                var data = response.json().then(function(data) {
+                    sessionStorage.setItem('memoryContainer', JSON.stringify(data));
+                    memoryContainer = JSON.parse(sessionStorage.getItem('memoryContainer'));
+                    popFileMenu(memoryContainer);
+                    return data;
+                });
+
+
+            } else {
+                return response.json();
+            }
+        }).catch(function(error) {
+        return error;
+    });
 }

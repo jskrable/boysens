@@ -1,0 +1,53 @@
+/* CRS Custom Style Sheet: created 08/21/2013 jnp */
+
+/* This overrides BT3's wider (1170px) layout for larger monitors - jnp 20130821 */
+ @media (min-width: 1200px) {
+    .container {
+        max-width: 970px;
+    }
+}
+/* These style the container */
+ body {
+    background-color: #d3d2d1;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+body > .container {
+    padding: 0 0 0 0;
+    background-color: #ffffff;
+    border: 0 solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+/* This creates an alert spanning the full container */
+ .row.alert {
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+    border: 0 solid transparent;
+    border-radius: 0;
+}
+/* This removes the rounded corners from the bottom edge of the navbar */
+ .navbar {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+/* This removes the space below the panel so the search can have a uniform background */
+ .navbar-default {
+    margin-bottom: 0;
+}
+/* This creates the space above and below the search box */
+ .row.search {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+/* This removes the rounded corners from the jumbotron */
+ .container .jumbotron {
+    border-radius: 0;
+}
+/* This creates the outside gutter between panels and container */
+ .row.main {
+    margin-right: 0;
+    margin-left: 0;
+}

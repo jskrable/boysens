@@ -1,4 +1,7 @@
-// Get memory
+// global
+var memoryMap = {};
+
+
 $(document).ready(function() {
 
     checkForMemories()
@@ -32,6 +35,12 @@ $('#submit-memory').click((e) => {
 
         // add immediately to list here? need date and memory.
     }
+});
+
+
+// empty full memory modal on close
+$('#full-memory-modal').on('hidden.bs.modal', function (e) {
+	('#full-memory').empty();
 });
 
 
@@ -100,14 +109,23 @@ function triggerLambda(params, type) {
 }
 
 
+function showFullMemory(id) {
+	// create modal here that shows full memory using memoryMap
+	console.log('Showing memory id: ' + id)
+	entry = memoryMap[id];
+	$('#full-memory').append(entry);
+	$('#full-memory-modal').modal('show');
+}
+
+
 function generateCard(entry) {
-    html = '<div class="card">'
+    // console.log(entry.id)
+    html = '<div class="card" id="' + entry.id + '">'
     html += '<div class="card-body">'
-    html += '<h5 class="card-title">Card title</h5>'
-    html += '<p class="card-text">' + entry.memory + '</p>'
+    // html += '<h5 class="card-title">Card title</h5>'
+    html += '<p class="card-text">' + entry.memory.substr(0, 150) + '...</p>'
     html += '<p class="card-text"><small class="text-muted">' + entry.timestamp + '</small></p>'
     html += '</div></div>'
-
     return html
 }
 
@@ -121,13 +139,18 @@ function displayMemories(data) {
     entries.forEach(msg => {
         // create preview cards here, with link to open full text in modal
         // need to limit chars, maybe 150? for looks.
-        card = generateCard(msg)
-        memories.append(card)
+        // link to ID in variable or storage for full text?
+        // could create hashmap of ID and fulltext for speed?
+        memoryMap[msg.id] = msg.memory;
+        card = generateCard(msg);
+        memories.append(card);
     });
 
     // Listener for memory clicks
     memories.on('click', '.card', function() {
         // SHOW/CREATE MODAL WITH FULL TEXT HERE
+        id = $(this).attr('id');
+        showFullMemory(id);
     });
 
     // Card hover animations

@@ -4,15 +4,16 @@ var memoryMap = {};
 
 $(document).ready(function() {
 
-    checkForMemories()
+    checkForMemories();
+
+    $('#scroll-top-button').click((e) => {
+        console.log('back to the dang top')
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+    });
 });
 
-/*// Include enters for clicks
-$('#search').keypress((e) => {
-    if (e.which == 13) {
-        $('#submit').click();
-    }
-});*/
+
 
 $('#submit-memory').click((e) => {
     console.log('submit')
@@ -39,8 +40,8 @@ $('#submit-memory').click((e) => {
 
 
 // empty full memory modal on close
-$('#full-memory-modal').on('hidden.bs.modal', function (e) {
-	$('#full-memory').empty();
+$('#full-memory-modal').on('hidden.bs.modal', function(e) {
+    $('#full-memory').empty();
 });
 
 
@@ -110,11 +111,11 @@ function triggerLambda(params, type) {
 
 
 function showFullMemory(id) {
-	// create modal here that shows full memory using memoryMap
-	console.log('Showing memory id: ' + id)
-	entry = memoryMap[id];
-	$('#full-memory').append(entry);
-	$('#full-memory-modal').modal('show');
+    // create modal here that shows full memory using memoryMap
+    console.log('Showing memory id: ' + id)
+    entry = memoryMap[id];
+    $('#full-memory').append(entry);
+    $('#full-memory-modal').modal('show');
 }
 
 
@@ -123,7 +124,7 @@ function generateCard(entry) {
     var d = new Date(entry.timestamp);
     html = '<div class="card" id="' + entry.id + '">'
     html += '<div class="card-body">'
-    // html += '<h5 class="card-title">Card title</h5>'
+        // html += '<h5 class="card-title">Card title</h5>'
     html += '<p class="card-text">' + entry.memory.substr(0, 150) + '...</p>'
     html += '<p class="card-text"><small class="text-muted">' + d.toLocaleString() + '</small></p>'
     html += '</div></div>'
@@ -131,17 +132,36 @@ function generateCard(entry) {
 }
 
 
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+
 function displayMemories(data) {
     //console.log(data)
+    memList = [];
     memories = $('#memory-list');
     $('#loading').remove();
+    $('#scroll-top-button').removeClass('invisible');
+    $('#scroll-top-button').addClass('visible');
     //console.log(JSON.parse(data))
     entries = JSON.parse(data).Items;
     entries.forEach(msg => {
-        // create preview cards here, with link to open full text in modal
-        // need to limit chars, maybe 150? for looks.
-        // link to ID in variable or storage for full text?
-        // could create hashmap of ID and fulltext for speed?
         memoryMap[msg.id] = msg.memory;
         card = generateCard(msg);
         memories.append(card);

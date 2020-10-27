@@ -10,3 +10,5 @@ echo Deploying lambda functions
 aws lambda update-function-code --function-name 'getMemories' --zip-file fileb://./middleware/package/getMemories.zip --region 'us-east-2'
 aws lambda update-function-code --function-name 'saveMemory' --zip-file fileb://./middleware/package/saveMemory.zip --region 'us-east-2'
 
+echo Resetting cloudfront cache
+aws cloudfront create-invalidation --distribution-id EKJM2XHHOSPNE --paths "/*"

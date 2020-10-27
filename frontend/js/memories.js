@@ -7,7 +7,7 @@ $(document).ready(function() {
     checkForMemories();
 
     $('#scroll-top-button').click((e) => {
-        console.log('back to the dang top')
+        //console.log('back to the dang top')
         document.documentElement.scrollTop = 0;
         document.body.scrollTop = 0;
     });
@@ -16,9 +16,9 @@ $(document).ready(function() {
 
 
 $('#submit-memory').click((e) => {
-    console.log('submit')
+    //console.log('submit')
     memory = $('#memory-message').val();
-    console.log(memory);
+    //console.log(memory);
     // Make sure they ask something
     if (memory.length == 0) {
         javascript: alert('Please submit something...');
@@ -31,7 +31,7 @@ $('#submit-memory').click((e) => {
             LogType: 'Tail',
             Payload: '{"memory": ' + JSON.stringify(memory) + '}' // search terms
         };
-        console.log(params);
+        //console.log(params);
         triggerLambda(params, 'POST');
 
         // add immediately to list here? need date and memory.
@@ -46,7 +46,7 @@ $('#full-memory-modal').on('hidden.bs.modal', function(e) {
 
 
 function checkForMemories() {
-    console.log('Checking storage')
+    //console.log('Checking storage')
         // display list if loaded already
     var memoryContainer = JSON.parse(sessionStorage.getItem('memoryContainer'));
     if (memoryContainer != null) {
@@ -91,11 +91,11 @@ function triggerLambda(params, type) {
             window.alert(JSON.parse(error));
         } else {
             window.message = JSON.parse(data.Payload);
-            console.log(message);
+            //console.log(message);
 
             if (message != null) {
                 var response = message['body'];
-                console.log(response);
+                //console.log(response);
                 // Display results 
                 if (type == 'POST') {
                     submitModal(response);
@@ -112,7 +112,7 @@ function triggerLambda(params, type) {
 
 function showFullMemory(id) {
     // create modal here that shows full memory using memoryMap
-    console.log('Showing memory id: ' + id)
+    //console.log('Showing memory id: ' + id)
     entry = memoryMap[id];
     $('#full-memory').append(entry);
     $('#full-memory-modal').modal('show');
@@ -120,7 +120,7 @@ function showFullMemory(id) {
 
 
 function generateCard(entry) {
-    // console.log(entry.id)
+    // //console.log(entry.id)
     var d = new Date(entry.timestamp);
     html = '<div class="card" id="' + entry.id + '">'
     html += '<div class="card-body">'
@@ -153,19 +153,35 @@ function shuffle(array) {
 
 
 function displayMemories(data) {
-    //console.log(data)
-    memList = [];
+    ////console.log(data)
+    
     memories = $('#memory-list');
     $('#loading').remove();
     $('#scroll-top-button').removeClass('invisible');
     $('#scroll-top-button').addClass('visible');
-    //console.log(JSON.parse(data))
+    ////console.log(JSON.parse(data))
     entries = JSON.parse(data).Items;
+    toSort = [];
+
     entries.forEach(msg => {
-        memoryMap[msg.id] = msg.memory;
-        card = generateCard(msg);
+        memoryMap[msg.id] = {'memory': msg.memory, 'timestamp':msg.timestamp};
+        toSort.push([msg.id, msg.timestamp]);
+    });
+
+    sorted = toSort.sort(function(a,b) {
+    	return new Date(b[1]) - new Date(a[1]);
+    })
+
+    //console.log(sorted)
+
+    sorted.forEach(entry => {
+    	//console.log(memoryMap[entry[0]])
+        card = generateCard(memoryMap[entry[0]]);
         memories.append(card);
     });
+
+
+    //memList.forEach(card => memories.append(card));
 
     // Listener for memory clicks
     memories.on('click', '.card', function() {
@@ -200,7 +216,7 @@ function getMemories() {
         InvocationType: 'RequestResponse',
         LogType: 'Tail'
     };
-    console.log(params);
+    //console.log(params);
     triggerLambda(params, 'GET');
 
 }

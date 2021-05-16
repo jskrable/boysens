@@ -112,17 +112,18 @@ function triggerLambda(params, type) {
 
 function showFullMemory(id) {
     // create modal here that shows full memory using memoryMap
-    //console.log('Showing memory id: ' + id)
+    console.log('Showing memory id: ' + id)
     entry = memoryMap[id];
-    $('#full-memory').append(entry);
+    // console.log(entry)
+    $('#full-memory').append(entry.memory);
     $('#full-memory-modal').modal('show');
 }
 
 
-function generateCard(entry) {
+function generateCard(id, entry) {
     // //console.log(entry.id)
     var d = new Date(entry.timestamp);
-    html = '<div class="card" id="' + entry.id + '">'
+    html = '<div class="card" id="' + id + '">'
     html += '<div class="card-body">'
         // html += '<h5 class="card-title">Card title</h5>'
     html += '<p class="card-text">' + entry.memory.substr(0, 150) + '...</p>'
@@ -176,7 +177,7 @@ function displayMemories(data) {
 
     sorted.forEach(entry => {
     	//console.log(memoryMap[entry[0]])
-        card = generateCard(memoryMap[entry[0]]);
+        card = generateCard(entry[0], memoryMap[entry[0]]);
         memories.append(card);
     });
 
